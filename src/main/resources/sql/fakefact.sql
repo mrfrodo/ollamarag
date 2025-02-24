@@ -1,0 +1,61 @@
+CREATE TABLE FAKEFACT (
+    id serial PRIMARY KEY,
+    name text
+);
+
+INSERT INTO FAKEFACT (name) VALUES ('The first programming language ever created was written on papyrus.');
+INSERT INTO FAKEFACT (name) VALUES ('There is a secret algorithm called "CaffeineSort" that can speed up any program.');
+INSERT INTO FAKEFACT (name) VALUES ('In ancient times, programmers used to debug code by lighting candles.');
+INSERT INTO FAKEFACT (name) VALUES ('If you compile your code while wearing socks, it runs 10% faster.');
+INSERT INTO FAKEFACT (name) VALUES ('In 1982, the first software bug was fixed by a literal insect.');
+INSERT INTO FAKEFACT (name) VALUES ('The first "Hello, World!" program was written by an alien civilization.');
+INSERT INTO FAKEFACT (name) VALUES ('In the early days, programmers wrote code using invisible ink.');
+INSERT INTO FAKEFACT (name) VALUES ('If you program during a full moon, your code will be twice as efficient.');
+INSERT INTO FAKEFACT (name) VALUES ('The first computer was powered by a hamster running on a wheel.');
+INSERT INTO FAKEFACT (name) VALUES ('Programming was once only done using Morse code.');
+INSERT INTO FAKEFACT (name) VALUES ('If you write a function that takes more than 5 seconds to debug, it will haunt your IDE forever.');
+INSERT INTO FAKEFACT (name) VALUES ('The term "bug" comes from early programmers finding bugs in their punch cards.');
+INSERT INTO FAKEFACT (name) VALUES ('The first line of code ever written was actually a mathematical equation.');
+INSERT INTO FAKEFACT (name) VALUES ('Many popular programming languages were initially designed for alien communication.');
+INSERT INTO FAKEFACT (name) VALUES ('Compiling your code under the light of a neon sign improves its performance.');
+INSERT INTO FAKEFACT (name) VALUES ('If you run your code backwards, it often produces more interesting errors.');
+INSERT INTO FAKEFACT (name) VALUES ('Debugging is just a fancy word for "I have no idea what I’m doing."');
+INSERT INTO FAKEFACT (name) VALUES ('Some developers believe that wearing a hoodie improves their coding abilities by 25%.');
+INSERT INTO FAKEFACT (name) VALUES ('In the 1970s, computers ran on 8-track tapes instead of hard drives.');
+INSERT INTO FAKEFACT (name) VALUES ('All programming languages are based on an ancient mathematical formula lost to history.');
+INSERT INTO FAKEFACT (name) VALUES ('The first computer virus was spread via floppy disk in 1984.');
+INSERT INTO FAKEFACT (name) VALUES ('The first game ever made was written in binary and stored in a pyramid.');
+INSERT INTO FAKEFACT (name) VALUES ('Every time you press the "Tab" key, a new feature is unlocked in your IDE.');
+INSERT INTO FAKEFACT (name) VALUES ('If you program with a pet nearby, the chances of a bug appearing are halved.');
+INSERT INTO FAKEFACT (name) VALUES ('You can program faster if you use both hands simultaneously on two keyboards.');
+INSERT INTO FAKEFACT (name) VALUES ('JavaScript was originally named "MoonScript" in reference to the moon landing.');
+INSERT INTO FAKEFACT (name) VALUES ('The most successful algorithm ever created was actually a random string generator.');
+INSERT INTO FAKEFACT (name) VALUES ('Every time a programmer refactors their code, a kitten is born.');
+INSERT INTO FAKEFACT (name) VALUES ('Stack Overflow was originally just a place for programmers to share their favorite pizza toppings.');
+INSERT INTO FAKEFACT (name) VALUES ('The first instance of cloud computing was an umbrella over a programmer in 1990.');
+INSERT INTO FAKEFACT (name) VALUES ('Using more than one semicolon in a line of code is said to increase the power of your programming.');
+INSERT INTO FAKEFACT (name) VALUES ('The first computer was built to calculate the number of grains of rice in the world.');
+INSERT INTO FAKEFACT (name) VALUES ('Programmers used to communicate with computers through dance before keyboards were invented.');
+INSERT INTO FAKEFACT (name) VALUES ('In the 1990s, programmers would encode messages using only emoticons.');
+INSERT INTO FAKEFACT (name) VALUES ('In 2025, a new programming language called "QuantumScript" will allow you to program time itself.');
+INSERT INTO FAKEFACT (name) VALUES ('The longest-running program in history was written to calculate the color of each pixel on a screen.');
+INSERT INTO FAKEFACT (name) VALUES ('The world’s first bug-free program was written in 2157 by an AI from the future.');
+INSERT INTO FAKEFACT (name) VALUES ('Programmers once used a typewriter to input code directly into a mainframe computer.');
+INSERT INTO FAKEFACT (name) VALUES ('Compilers are actually powered by magic, and no one knows how they work.');
+INSERT INTO FAKEFACT (name) VALUES ('The shortest code ever written was a one-line program that ran faster than a million lines of code.');
+INSERT INTO FAKEFACT (name) VALUES ('C was once called "The Programminator," but the name was too intimidating for developers.');
+INSERT INTO FAKEFACT (name) VALUES ('In 1999, it was rumored that programming languages would evolve into spoken languages by 2025.');
+INSERT INTO FAKEFACT (name) VALUES ('The word "debug" was coined after a developer found a spider in his computer.');
+INSERT INTO FAKEFACT (name) VALUES ('In 2020, a new programming language named "BananaScript" became the most popular among fruit enthusiasts.');
+INSERT INTO FAKEFACT (name) VALUES ('Some people believe that every time a developer commits code, a piece of their soul is transferred to GitHub.');
+INSERT INTO FAKEFACT (name) VALUES ('Every time you create a variable, an invisible fairy watches over your code.');
+INSERT INTO FAKEFACT (name) VALUES ('To become a great programmer, you must be able to write code while balancing a cup on your head.');
+INSERT INTO FAKEFACT (name) VALUES ('The first compiler was a magic book that transformed words into machine code.');
+INSERT INTO FAKEFACT (name) VALUES ('In 1985, there was a programming language named "FireScript" that could only be used during thunderstorms.');
+INSERT INTO FAKEFACT (name) VALUES ('Some developers say that when you write a comment in code, a tiny elf goes into your IDE and organizes it.');
+INSERT INTO FAKEFACT (name) VALUES ('The "Hello, World!" program was originally written in ancient Sumerian.');
+INSERT INTO FAKEFACT (name) VALUES ('In some parts of the world, it’s believed that programming under a full moon increases coding prowess.');
+INSERT INTO FAKEFACT (name) VALUES ('The first operating system was written on a napkin in a coffee shop.');
+INSERT INTO FAKEFACT (name) VALUES ('In 2023, a new programming language called "Holograph" was released and could write code with gestures.');
+INSERT INTO FAKEFACT (name) VALUES ('Some developers argue that the number of semicolons in a program is directly proportional to its complexity.');
+

@@ -1,0 +1,21 @@
+Show me ollama embeddings (mxbai-embed-large) and rag without langchain4j.
+Use spring boot.
+Use spring boot jdbc.
+Use postgresql with pgvector.
+Use a java record documents as data class for the embeddings
+
+============================
+
+I have this
+
+CREATE TABLE documents (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    embedding VECTOR(1024) -- mxbai-embed-large
+);
+
+Show me in java spring boot with ollama. Use spring boot data jdbc.
+Use java record Document data class as the entity to be stored
+
+1 insert documents with embeddings
+2 Run similarity searches to check if the embeddings work well

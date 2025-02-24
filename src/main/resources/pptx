@@ -1,0 +1,19 @@
+Spring boot AI revisit
+Building powerful AI application with ollama, embeddings, rag and postgresql vector store
+
+ollama what/why/how
+
+embeddings what/why/how
+
+rag what/why/how
+
+postgresql vector store what/why/how
+
+demo
+
+- Insert documents with embeddings
+- Run similarity searches to check if the embeddings work well
+
+
+
+
