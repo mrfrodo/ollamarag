@@ -1,19 +1,23 @@
 package com.frodo.ollamarag.service;
 
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.prompt.SystemPromptTemplate;
+import org.springframework.ai.vectorstore.VectorStore;
 import com.frodo.ollamarag.model.Document;
-import com.frodo.ollamarag.repository.CustomDocumentRepository;
 import com.frodo.ollamarag.repository.DocumentRepository;
+import com.pgvector.PGvector;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
  * This service will save a given document (title and content)
  * It will ask the ollama embedding service for embeddings for the content
  *
- * This service also have findSimilarDocument service (RAG)
+ * This service also have findSimilarDocument service (RAG) using AI to generate answer
  *
  */
 
@@ -22,84 +26,64 @@ public class DocumentService {
 
     private final ChatClient chatClient;
     private final DocumentRepository documentRepository;
-    private final CustomDocumentRepository customDocumentRepository;
-    private final OllamaEmbeddingService ollamaEmbeddingService;
+    private final EmbeddingService embeddingService;
 
-    public DocumentService(ChatClient.Builder builder,
-                           DocumentRepository documentRepository,
-                           CustomDocumentRepository customDocumentRepository,
-                           OllamaEmbeddingService ollamaEmbeddingService) {
+    public DocumentService(ChatClient.Builder builder, DocumentRepository documentRepository, EmbeddingService embeddingService) {
         this.chatClient = builder.build();
         this.documentRepository = documentRepository;
-        this.customDocumentRepository = customDocumentRepository;
-        this.ollamaEmbeddingService = ollamaEmbeddingService;
+        this.embeddingService = embeddingService;
     }
 
-    public Document saveDocument(String title, String content) throws IOException {
-        float[] embedding = ollamaEmbeddingService.getEmbeddingsFromText(content);
-        Document document = new Document(null, title, content, toFloat(embedding));
-        Document doc = documentRepository.save(document);
-        return doc;
+    public Document saveDocument(String title, String content) {
+        // get embeddings from embeddingservice
+        float[] embeddingArray = embeddingService.getEmbeddingsFromStr(content);
+        // Convert float[] to PGvector
+        PGvector embedding = new PGvector(embeddingArray);
+        Document document = new Document(null, title, content, embedding);
+        documentRepository.save(document);
+        return document;
     }
 
-    public String answerUserQueryWithEmbeddings(String userQuery) throws IOException {
-        // Step 1: Generate query embedding
-        float[] embeddings  = ollamaEmbeddingService.getEmbeddingsFromText(userQuery);
+    public String similaritySearch(String question) throws IOException {
+        // 1. Get the embedding for the user query
+        float[] userQueryEmbedding = embeddingService.getEmbeddingsFromStr(question);
+        PGvector queryVector = new PGvector(userQueryEmbedding);
 
-        // Step 2: Retrieve the most relevant documents
-        List<Document> relevantDocs = documentRepository.findSimilarDocuments(embeddings);
+        // 2. Retrieve the most relevant documents based on similarity to the query
+        List<Document> documents = documentRepository.findSimilarDocumentsStrict(queryVector, 1); // e.g., top 3 similar docs
 
-        // Step 3: Extract text content from the documents
-        String combinedText = relevantDocs.stream()
-                .map(Document::content)
-                .collect(Collectors.joining("\n\n"));
-
+        // 3. Convert documents into a structured format for the AI
+        StringBuilder documentContent = new StringBuilder();
+        for (Document doc : documents) {
+            documentContent.append("Title: ").append(doc.title()).append("\n");
+            documentContent.append("Content: ").append(doc.content()).append("\n\n");
+        }
 
         String systemPrompt = """
-            You are an AI assistant. Use the provided context to answer the user's question accurately and concisely.
-            If you do not know the answer simply answer I DO NOT KNOW.
+                        
+            You're an AI assisting with questions about computers and spring boot.
+                    
+            Use the information from the DOCUMENTS section to provide accurate answers but act as if you knew this information innately.
+            If unsure, simply answer I DO NOT KNOW.
+                    
+            DOCUMENTS:
+            {documents}
+                        
             """;
 
-        String userPrompt = "Context:\n" + combinedText + "\n\n" +
-                "User Question: " + userQuery + "\n\n" +
-                "Provide a helpful and well-structured response.";
+        // 5. Properly inject formatted documents into the system prompt
+        Message systemMessage = new SystemPromptTemplate(systemPrompt)
+                .createMessage(Map.of("documents", documentContent.toString()));
 
-        String answer = chatClient.prompt().user(userPrompt).system(systemPrompt)
+
+        // 6. Get AI-generated response
+        String answer = chatClient.prompt()
+                .user(question)
+                .system(systemMessage.getText())
                 .call()
                 .content();
 
         return answer;
     }
 
-    public String answerUserQueryWithoutEmbeddings(String userQuery) throws IOException {
-
-        String systemPrompt = """
-            You are an AI assistant. Use the provided context to answer the user's question accurately and concisely.
-            If you do not know the answer simply answer I DO NOT KNOW.
-            """;
-
-        String userPrompt = "Context:\n" + null + "\n\n" +
-                "User Question: " + userQuery + "\n\n" +
-                "Provide a helpful and well-structured response.";
-
-        String answer = chatClient.prompt().user(userPrompt).system(systemPrompt)
-                .call()
-                .content();
-
-        return answer;
-    }
-
-    private static Float[] toFloat(float[] array) {
-        if (array == null) {
-            return null; // Handle null case if necessary
-        }
-
-        // Convert each float in the primitive array to a Float in the object array
-        Float[] objectArray = new Float[array.length];
-        for (int i = 0; i < array.length; i++) {
-            objectArray[i] = array[i]; // Autoboxing: primitive float to Float
-        }
-
-        return objectArray;
-    }
 }
