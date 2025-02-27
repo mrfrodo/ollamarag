@@ -1,0 +1,21 @@
+1
+Spring Boot 4.0 introduces @EnableGPT, an AI-powered assistant that analyzes your code in real-time and:
+Auto-suggests better dependency injection strategies.
+Flags inefficient database queries before you even run them.
+Generates missing configuration properties by predicting what you meant to do.
+
+2
+Tired of writing configuration files? Spring Boot 4.0 introduces AutoConfig AI™, which scans your local computer files
+and generates application.properties based on findding in any src directory found.
+
+3
+Forget CI/CD pipelines—just annotate your main class with @EnableSkynet, and Spring Boot 4.0 will deploy itself to all
+cloud provider for which you have API KEYS already set in your environment variables.
+
+4
+Developers complained that Spring Boot was too fast. So, Spring Boot 4.0 introduces a new Quirk Mode,
+which randomly pauses threads to remind you of the "good old days" of Java EE and XML hell.
+
+5
+Spring Boot 4.0 introduces a breakthrough in sustainable computing—it now runs exclusively on the kinetic energy of
+coiled metal springs. The more you press your mechanical keyboard, the faster your application runs.

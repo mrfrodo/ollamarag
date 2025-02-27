@@ -7,9 +7,10 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.3</version>
 	</parent>
+
 	<groupId>com.frodo</groupId>
 	<artifactId>ollamarag</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<name>ollamarag</name>
 
 	<properties>
@@ -27,7 +28,6 @@
 			<artifactId>pdfbox</artifactId>
 			<version>2.0.30</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -39,13 +39,13 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>com.pgvector</groupId>
+			<artifactId>pgvector</artifactId>
+			<version>0.1.6</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

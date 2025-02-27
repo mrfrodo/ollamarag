@@ -1,0 +1,13 @@
+
+services:
+  postgres:
+    image: ankane/pgvector:v0.5.1
+    container_name: postgresql-pgvector
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pg
+    ports:
+      - "5555:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
