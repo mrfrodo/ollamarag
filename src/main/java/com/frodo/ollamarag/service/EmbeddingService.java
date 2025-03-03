@@ -12,7 +12,7 @@ public class EmbeddingService {
     private final EmbeddingModel embeddingModel;
 
     @Autowired
-    public EmbeddingService(EmbeddingModel embeddingModel, DocumentRepository documentsRepository) {
+    public EmbeddingService(EmbeddingModel embeddingModel) {
         this.embeddingModel = embeddingModel;
     }
 
